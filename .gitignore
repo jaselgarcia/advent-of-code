@@ -1,0 +1,6 @@
+# Ignore input files
+*input*
+
+# Ignore hidden files excep .gitignore
+.*
+!.gitignore
