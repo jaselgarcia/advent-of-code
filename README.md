@@ -10,3 +10,6 @@ May revisit document structure in the future.
 **2015, day 08**:
 needed to encode/decode strings - good use case for `quotemeta` and `eval`functions
 
+**2015, day 09**:
+need to develop tree structure and traversal methods - first signifcant challenge
+- exploring mutlidimensional hash arrays and recursion
