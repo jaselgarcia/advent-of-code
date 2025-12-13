@@ -7,6 +7,6 @@ May revisit document structure in the future.
 
 ## Perl
 
-**2015, day 07**:
+**2015, day 08**:
 needed to encode/decode strings - good use case for `quotemeta` and `eval`functions
 
