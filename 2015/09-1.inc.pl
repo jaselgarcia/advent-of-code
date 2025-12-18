@@ -2,27 +2,31 @@
 
 use strict;
 use warnings;
+
 my %cities;
 my $tree_depth;
 
 # Recursively travel list until reach $num_cities
-# Need to refactor to recieve target city, hash to traverse
+# Need to refactor to receive target city, hash to traverse
 # Will recur on destination city until one doesn't exist
 # May need to keep track of cities visited
 sub travel_tree {
 	my %tree = %{$_[0]};
-	my $break_point = $_[1];
-	my $tree_depth = $_[2];
-	
+	my $start = $_[1];
+	my $break_point = $_[2];
+	my $tree_depth = $_[3];
+
+	# rescursion base condition
+	if (($tree_depth > $break_point) || keys(%{$tree{$start}}) == 0) {
+		return "";
+	}
+
 	print "\nbreak_point: $break_point, tree_depth: $tree_depth\n";
-	return if ($tree_depth > $break_point);
 
-
-	while (my ($city, $dests) = each(%tree)) {
-		print "processing $city destinations\n";	
-		my $ref_type = ref($dests);
-		next unless ($ref_type =~ /HASH/);
-		&travel_tree (\%{$dests}, $break_point, $tree_depth++);
+	 while (my ($next, $dist) = each(%{$tree{$start}})) {
+		# return "$start -> $next: $dist\n";
+		my $itinerary = "$start -> $next\t";
+		return $itinerary . &travel_tree(\%tree, $next, $break_point, $tree_depth += 1) . "\n";
 	}
 }
 
@@ -39,6 +43,7 @@ while (<stdin>) {
 }
 
 my $num_cities = scalar(keys(%cities));
+my @list_cities = keys(%cities);
 print "\nNumber of cities: $num_cities\n";
 
 # Create multidimensional hash using $dests str as ref hash
@@ -47,16 +52,7 @@ while (my ($city, $dests) = each(%cities)) {
 	$cities{$city} = \%curr_hash;
 }
 
-foreach my $city (keys(%cities)){
-	print "\nStarting in $city:\n";
-	&travel_tree(\%cities, $num_cities, 1);
-}
-
-# Data dump/debug
-# print "\n";
-# while (my ($city, $dests) = each(%cities)) {
-# print "$city:\n";
-# while (my ($dest, $dist) = each($dests)) {
-# print "\t$dest => $dist\n";
-# }
-# }
+foreach my $start (@list_cities) {
+	print "Starting in $start";
+	print "\n" . &travel_tree(\%cities, $start, $num_cities, 1) . "\n";
+ }
