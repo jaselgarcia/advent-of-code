@@ -12,4 +12,5 @@ needed to encode/decode strings - good use case for `quotemeta` and `eval`functi
 
 **2015, day 09**:
 need to develop tree structure and traversal methods - first signifcant challenge
-- exploring mutlidimensional hash arrays and recursion
+- Exploring mutlidimensional hash arrays and recursion
+- First encounter with perl's quirky method of iterating over hash. Poses challenge when recursviely traveling mulitidimensional hash with each.
