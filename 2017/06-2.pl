@@ -45,6 +45,9 @@ my @blocks = split /\s+/, <stdin>;
 OUTER: while (1 == 1) {
 	# printf "Current cycle: %s\n", $cycle;
 
+	# my $current = join '', @blocks;
+	# last if grep /^$current$/, @seen;
+
 	foreach my $combo (@seen) {
 		# printf "\tComparing %s against %s\n", join('', @blocks),  $combo;
 		last OUTER if join('', @blocks) eq $combo;
