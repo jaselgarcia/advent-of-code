@@ -9,7 +9,6 @@ my $x = my $y = 5;
 my $grid->[$y]->[$x] = 1;
 
 sub sum_adjacent {
-	my ($a, $b) = @_;
 	my $sum = 0;
 	
 	for (my $i = -1; $i < 2; $i++) {
@@ -29,12 +28,12 @@ for (my $i = 0; $x > 0 && $y > 0; $i++) {
 
 	for (my $j = $i + 1; $j > 0; $j--) {
 		$x += $step;
-		$grid->[$y]->[$x] = sum_adjacent($x, $y);
+		$grid->[$y]->[$x] = sum_adjacent;
 	}
 
 	for (my $j = $i + 1; $j > 0; $j--) {
 		$y -= $step;
-		$grid->[$y]->[$x] = sum_adjacent($x, $y);
+		$grid->[$y]->[$x] = sum_adjacent;
 	}
 }
 
